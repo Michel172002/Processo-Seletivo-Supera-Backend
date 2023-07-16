@@ -18,7 +18,7 @@ public interface TransferenciaRepository extends JpaRepository<TransferenciaMode
             LocalDateTime endData,
             Pageable pageable);
 
-    public Page<TransferenciaModel> findAllByContaIdAndNomeOperadorTransacao(
+    Page<TransferenciaModel> findAllByContaIdAndNomeOperadorTransacao(
             Long id,
             String nomeOperadorTransacao,
             Pageable pageable);
