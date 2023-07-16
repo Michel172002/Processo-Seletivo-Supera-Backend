@@ -26,7 +26,7 @@ public class TransferenciaController {
             @RequestParam(value = "startData", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startData,
             @RequestParam(value = "endData", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endData,
             @RequestParam(value = "opTransf", required = false) String nomeOperadorTransacao,
-            @PageableDefault(size = 4) Pageable pageable)
+            @PageableDefault(size = 4, sort = "dataTransferencia") Pageable pageable)
     {
         Page<TransferenciaModel> transferencias = transferenciaService.findTransferencias(id, startData, endData, nomeOperadorTransacao, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(transferencias);
