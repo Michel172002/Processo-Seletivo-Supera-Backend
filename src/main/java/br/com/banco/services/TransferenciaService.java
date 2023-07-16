@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 @Service
@@ -41,5 +43,17 @@ public class TransferenciaService {
                 return transferenciaRepository.findAllByContaId(id, pageable);
             }
         }
+    }
+
+
+    public BigDecimal somarValoresTransferencias(Long id, LocalDateTime startData, LocalDateTime endData, String nomeOperadorTransacao) {
+        Page<TransferenciaModel> transferencias = findTransferencias(id, startData, endData, nomeOperadorTransacao, Pageable.unpaged());
+
+        BigDecimal somaValores = BigDecimal.ZERO;
+        for (TransferenciaModel transferencia : transferencias.getContent()) {
+            somaValores = somaValores.add(BigDecimal.valueOf(transferencia.getValor()));
+        }
+
+        return somaValores.setScale(2, RoundingMode.HALF_UP);
     }
 }
