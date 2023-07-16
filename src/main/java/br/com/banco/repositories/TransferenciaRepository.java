@@ -22,5 +22,12 @@ public interface TransferenciaRepository extends JpaRepository<TransferenciaMode
             Long id,
             String nomeOperadorTransacao,
             Pageable pageable);
+
+    Page<TransferenciaModel> findAllByContaIdAndDataTransferenciaBetweenAndNomeOperadorTransacao(
+            Long id,
+            LocalDateTime startDate,
+            LocalDateTime endData,
+            String nomeOperadorTransacao,
+            Pageable pageable);
 }
 
