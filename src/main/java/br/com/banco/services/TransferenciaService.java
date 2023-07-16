@@ -18,8 +18,11 @@ public class TransferenciaService {
         return transferenciaRepository.findAllByContaId(id, pageable);
     }
 
-    public Page<TransferenciaModel> findAllByContaIdAndDataTransferenciaBetween(
-            Long id, LocalDateTime startData, LocalDateTime endData, Pageable pageable){
+    public Page<TransferenciaModel> findAllByContaIdAndDataTransferenciaBetween(Long id, LocalDateTime startData, LocalDateTime endData, Pageable pageable){
         return transferenciaRepository.findAllByContaIdAndDataTransferenciaBetween(id, startData, endData, pageable);
+    }
+
+    public Page<TransferenciaModel> findAllByContaIdAndNomeOperadorTransacao(Long id, String nomeOperadorTransacao, Pageable pageable){
+        return transferenciaRepository.findAllByContaIdAndNomeOperadorTransacao(id, nomeOperadorTransacao, pageable);
     }
 }
